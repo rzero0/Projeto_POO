@@ -1,8 +1,11 @@
 import java.io.BufferedReader;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStream;
 
 import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
@@ -20,7 +23,6 @@ public class LerArquivos {
          ioe.printStackTrace();
       }
       
-      
       DefaultCategoryDataset ds = new DefaultCategoryDataset();
       ds.addValue(40.5, "maximo", "dia 1");
       ds.addValue(38.2, "maximo", "dia 2");
@@ -31,5 +33,16 @@ public class LerArquivos {
 
       JFreeChart grafico = ChartFactory.createLineChart("Meu Grafico", "Dia", 
           "Valor", ds, PlotOrientation.VERTICAL, true, true, false);
-   }
-}
+      try {
+    	  System.out.println("Ta imprimindo seu bosta");
+    	  OutputStream png = new FileOutputStream("Graficomerda.png");
+    	  ChartUtilities.writeChartAsPNG(png, grafico, 500, 400);
+    	  png.close();
+      }catch(IOException io) {
+    	  System.out.println("ERRO IMBECIL");
+      }
+      System.out.println("Aprendeu a programar foi?!");
+      }
+   
+	}
+	
